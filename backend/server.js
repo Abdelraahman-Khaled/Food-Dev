@@ -8,7 +8,14 @@ import cartRouter from './routes/cartRoute.js';
 import bodyParser from "body-parser";
 
 // to access on env file 
-dotenv.config();
+dotenv.config((
+    {
+        origin: ["https://stately-salamander-18db76.netlify.app/"],
+        methods: ["POST", 'GET'],
+        Credential: true,
+        credentails: true
+    }
+));
 
 // app config
 const app = express()

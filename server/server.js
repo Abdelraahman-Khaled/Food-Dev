@@ -22,7 +22,10 @@ app.use(cors()) // make front and back conected with different ports
 
 // db connection
 connectDB();
-
+// default
+app.get("/", (req, res) => {
+    res.json("Welcome To My Backend Server !")
+})
 // api endpoints
 app.use("/api/food", foodRouter)
 app.use("/images", express.static('uploads'))

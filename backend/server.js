@@ -10,12 +10,25 @@ import bodyParser from "body-parser";
 // to access on env file 
 dotenv.config((
     {
-        origin: ["https://stately-salamander-18db76.netlify.app/"],
-        methods: ["POST", 'GET'],
-        Credential: true,
-        credentails: true
+        origin: 'https://stately-salamander-18db76.netlify.app', // Replace with your actual frontend URL
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type'],
     }
 ));
+
+module.exports = async (req, res) => {
+    // Set CORS headers to allow requests from your frontend domain
+    res.setHeader('Access-Control-Allow-Origin', 'https://stately-salamander-18db76.netlify.app'); // Replace with your frontend URL
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    // Your API logic here
+    if (req.method === 'GET') {
+        res.status(200).json({ message: 'Food list data' });
+    } else {
+        res.status(405).json({ error: 'Method Not Allowed' });
+    }
+};
 
 // app config
 const app = express()
